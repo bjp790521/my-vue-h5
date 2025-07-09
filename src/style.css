@@ -1,0 +1,159 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --guofeng-primary: #223a4b; /*黛青*/
+  --guofeng-gold: #c7a96b;
+  --guofeng-bg: #f8f5ef;
+  --guofeng-red: #b43c36;
+  --guofeng-border: #e5d7b6;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body, #app {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f8f5ef;
+  color: #222;
+  font-family: 'Songti SC', 'Noto Serif SC', 'Microsoft YaHei', serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.button-ink {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0.5;
+  background: radial-gradient(circle, #b43c36 0%, #c7a96b 60%, transparent 100%);
+  animation: ink-ripple 0.7s cubic-bezier(.4,0,.2,1);
+  z-index: 2;
+}
+@keyframes ink-ripple {
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+.card {
+  padding: 2em;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s, box-shadow 0.22s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 180px;
+  height: 80px;
+  background: url('/images/ink-smoke.png') center/contain no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(1.1);
+  transition: opacity 0.5s, transform 0.5s;
+  z-index: 3;
+}
+.card:hover::after {
+  opacity: 0.55;
+  transform: translateX(-50%) scale(1.18);
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.04) rotate(-1deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+}
+
+/* 顶部祥云SVG动效 */
+.guofeng-cloud {
+  position: absolute;
+  top: 12px;
+  left: 32px;
+  z-index: 10;
+  animation: cloud-move 12s linear infinite alternate;
+  pointer-events: none;
+}
+@keyframes cloud-move {
+  0% { transform: translateX(0) scale(1); opacity: 0.7; }
+  100% { transform: translateX(60px) scale(1.08); opacity: 1; }
+}
+
+/* 分区标题毛笔飞入动画 */
+.section-title {
+  opacity: 0;
+  transform: translateX(-40px) scale(0.96) skewX(-8deg);
+  animation: title-fly-in 0.9s cubic-bezier(.6,-0.1,.4,1.1) forwards;
+  animation-delay: 0.2s;
+}
+@keyframes title-fly-in {
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1) skewX(0);
+  }
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
